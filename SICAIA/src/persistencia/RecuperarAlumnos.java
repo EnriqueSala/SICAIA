@@ -22,7 +22,7 @@ public class RecuperarAlumnos {
         conexion = new Conexion();
     }
     
-    public ArrayList<Alumno> listaralumnos(String grado, String grupo, String asignatura){
+    public ArrayList listaralumnos(String grado, String grupo, String asignatura){
        ArrayList listaalumnos = new ArrayList();
        Alumno alumno;
        

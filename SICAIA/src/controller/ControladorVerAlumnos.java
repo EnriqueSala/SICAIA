@@ -13,18 +13,16 @@ import javax.swing.table.DefaultTableModel;
 import model.Alumno;
 import org.eclipse.persistence.jpa.jpql.parser.JoinFetchBNF;
 import persistencia.RecuperarAlumnos;
-import persistencia.RecuperarCorreos;
-import view.JFCorreo;
 import view.JFVerAlumnos;
 
 /**
  *
  * @author Marco
  */
-public class ControladorVerAlumnos implements ActionListener{
+public class ControladorVerAlumnos{
     JFVerAlumnos vistaver = new JFVerAlumnos();
     RecuperarAlumnos recuperaralumnos = new RecuperarAlumnos();
-    Alumno alumno = new Alumno();
+    
     String grado, grupo, asignatura;
     
     
@@ -34,7 +32,7 @@ public class ControladorVerAlumnos implements ActionListener{
         this.grado=grado;
         this.grupo=grupo;
         this.asignatura=asignatura;
-        this.vistaver.btnCorreos.addActionListener(this);
+        
     }
     
     
@@ -75,35 +73,8 @@ public class ControladorVerAlumnos implements ActionListener{
 
     }
     
-    public void actionPerformed(ActionEvent e){
-        if (e.getSource()==vistaver.btnCorreos){
-            JFCorreo vistaCorreo = new JFCorreo();
-            vistaCorreo.setVisible(true);
-            vistaCorreo.setLocationRelativeTo(null);
-            
-            Alumno alumno = new Alumno();
-            ArrayList alumnos = new ArrayList();
-            alumnos = recuperaralumnos.listaralumnos(grado, grupo, asignatura);
-            int cantidad = alumnos.size();
-        
-            ArrayList tutores = new ArrayList();
-            RecuperarCorreos correos = new RecuperarCorreos();
-            
-            
-            for(int i=0; i<cantidad; i++){
-                alumno = (Alumno) alumnos.get(i);
-                String tutor = correos.listartutores(alumno.getTutor());
-                if(tutor==null){
-                    
-                }else{
-                tutores.add(tutor);
-                }
-                
-            }
-            
-            ControladorCorreo controlador = new ControladorCorreo(vistaCorreo,tutores);
-        }
+    
     }
     
     
-}
+
